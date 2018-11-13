@@ -1,6 +1,6 @@
 # Site settings
 title: Hux Blog
-SEOTitle: 谈金潇的博客 | TJX Blog
+SEOTitle: 谈金潇的博客 | TanJX Blog
 header-img: img/home-bg.jpg
 email: tanjinxiao25@gmail.com
 description: "一个正在成长，还没有细致方向的努力中的程序员 | @谈金潇的博客"
@@ -78,7 +78,7 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "For the next quantum leap<br>离开世界之前，一切都是过程"
+sidebar-about-description: "Always looking for, never give up!<br>一直寻找，不曾放弃！"
 sidebar-avatar: /img/my-tjx.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
