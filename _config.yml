@@ -13,10 +13,10 @@ future: true
 
 # SNS settings
 RSS: false
-QQ_username:     TanJx
+#QQ_username:     TanJx
 zhihu_username:     TanJX
 github_username:    nolearnnogrowth
-twitter_username:   TanJx
+twitter_username:   TanJx6
 facebook_username:  TanJx
 #linkedin_username:  firstname-lastname-idxxxx
 
