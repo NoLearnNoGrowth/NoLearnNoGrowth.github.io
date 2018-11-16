@@ -1740,3 +1740,17 @@ img::-moz-selection {
 .search-icon-close {
   font-size: 16px;
 }
+
+/* sidebar search */
+.search-form .search-input:focus{
+  outline: none;
+}
+.search-form .search-input{
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  line-height: 30px;
+  background: none;
+  border: 1px solid #bfbfbf;
+  border-radius: 999em;
+} 
