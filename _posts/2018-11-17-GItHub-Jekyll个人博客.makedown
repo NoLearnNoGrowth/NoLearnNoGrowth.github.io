@@ -20,12 +20,10 @@ tags:
 ### 2.建立仓库
 要想成功通过github的```github pages```建立个人网页，你就需要将仓库名字命名为```username.github.io```，否则后面你会发现
 无法使用```github pages```
-
 ![GitHub](https://upload-images.jianshu.io/upload_images/14848329-ee99fd52e31550a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 3.GitHub Desktop
 我没用大多数教程教的使用git来配置。因为毕竟以前没接触过，短时间学习还是很麻烦的事情，所以我选择了简单的```github desktop```。在这个里面我们可以直接将仓库clone到本地。在本地修改后直接通过这个软件```commit```后push上github。
-
 ![GitHub Desktop](https://upload-images.jianshu.io/upload_images/14848329-854d588142806006.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 4.主页配置
