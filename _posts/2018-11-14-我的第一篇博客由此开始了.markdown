@@ -1,6 +1,7 @@
 ---
 layout:     post
 title:      "Welcome to TanJX Blog"
+comments: true
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2018-11-14 01:00
 author:     "TanJX"
