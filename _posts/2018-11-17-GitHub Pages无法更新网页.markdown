@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "GitHub+Jekyll 静态网页的个人博客"
+title:      "GitHub Pages 无法更新网页"
 subtitle:   " \"建立博客了！\""
 date:       2018-11-17 01:00
 author:     "TanJX"
@@ -9,7 +9,7 @@ tags:
     - 博客
 ---
 
-## GitHub Pages 无法更新网页
+## 上传代码却没有更新个人网页
 我在美化自己博客的时候，发现自己update了文件，通过GitHub Desktop```push``` 上去了 ```repository```，但是在网页上没有更新。
 我一开始以为是延迟没有在意，但是后来发现过了一晚上都没有更新。而且平时的延迟也不可能那么长。才发现自己的邮箱里被GitHub发了邮件
 
