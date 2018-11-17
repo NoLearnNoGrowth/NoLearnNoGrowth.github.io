@@ -20,11 +20,11 @@ tags:
 ### 2.建立仓库
 要想成功通过github的```github pages```建立个人网页，你就需要将仓库名字命名为```username.github.io```，否则后面你会发现
 无法使用```github pages```
-![GitHub](https://upload-images.jianshu.io/upload_images/14848329-ee99fd52e31550a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![GitHub](/img/in_post/2018-11-17---GitHub.png)
 
 ### 3.GitHub Desktop
 我没用大多数教程教的使用git来配置。因为毕竟以前没接触过，短时间学习还是很麻烦的事情，所以我选择了简单的```github desktop```。在这个里面我们可以直接将仓库clone到本地。在本地修改后直接通过这个软件```commit```后push上github。
-![GitHub Desktop](https://upload-images.jianshu.io/upload_images/14848329-854d588142806006.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![GitHub Desktop](/img/in_post/2018--11-17---GitHub Desktop.png)
 
 ### 4.主页配置
 个人网页风格按自己喜好配置，如果你懂html,css,yml,js等等，你可以选择自己编写一个好看的网页风格。但是肯定很难。。。所以你可以自己选择上网下载模板，或者在github上```fork```一个喜欢的模板然后自己再去慢慢修改。
@@ -36,10 +36,10 @@ Hello World!
 
 ### 5.购买域名
 我是在[万网](https://wanwang.aliyun.com/)购买的域名。因为国家新规定，购买的域名凡是没有实名制的一律Serverhold了。所以购买后要记得实名认证。一般实名认证是比较快的，他说一天左右，其实用不了，我的一个小时就认证通过了。然后要配置dns解析。
-![万网](https://upload-images.jianshu.io/upload_images/14848329-51f7806f39c982a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![购买后的列表](https://upload-images.jianshu.io/upload_images/14848329-0452a22b21e47381.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![万网](/img/in_post/2018-11-17---wanwang.png)
+![购买后的列表](/img/in_post/2018-11-17---yuming.png)
 当然我这个是我买完并且解析已经弄好了的。第一次购买的话，上面会有让你解析的提示的，还是很显眼的。
-![解析配置](https://upload-images.jianshu.io/upload_images/14848329-d739118314b39ac9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![解析配置](/img/in_post/2018-11-17---dns.png)
 比较需要注意的就是，这个框起来的，我们两个都选cmake，后面的一个是@,一个是www。这样配置完还是不够的，没有实名认证的话是会处于Serverhold状态。
 
 
