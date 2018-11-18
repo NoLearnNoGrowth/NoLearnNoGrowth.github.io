@@ -14,6 +14,8 @@ tags:
 ## title
 
 
+*Time limit ```2000``` ms     Memory limit ```65536``` kB*
+
 
 **Input**
 
