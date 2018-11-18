@@ -30,7 +30,7 @@ Output file must contain a single integer - the length of the longest ordered su
 **Sample Input**
 <div class="zh post-container">
     <blockquote>
-    7</br>
+    7<br>
     1 7 3 5 9 4 8
     </blockquote>
 </div>
