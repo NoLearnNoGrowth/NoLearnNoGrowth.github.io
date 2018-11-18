@@ -51,25 +51,25 @@ For each question, output a single integer on a line by itself, the number of ad
 **Examples**
 
 **Input**
->3 2 4
-91 94
-92 97
-97 99
-92 94
-93 97
-95 96
+>3 2 4<br>
+91 94<br>
+92 97<br>
+97 99<br>
+92 94<br>
+93 97<br>
+95 96<br>
 90 100
 
 **Output**
->3
-3
-0
+>3<br>
+3<br>
+0<br>
 4
 
 **Input**
->2 1 1
-1 1
-200000 200000
+>2 1 1<br>
+1 1<br>
+200000 200000<br>
 90 100
 
 **Output**
