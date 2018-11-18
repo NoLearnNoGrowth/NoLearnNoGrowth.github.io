@@ -29,7 +29,7 @@ Karen has a rather fickle mind, and so she asks q questions. In each question, g
 Input
 The first line of input contains three integers, n, k (1 ≤ k ≤ n ≤ 200000), and q (1 ≤ q ≤ 200000), the number of recipes, the minimum number of recipes a certain temperature must be recommended by to be admissible, and the number of questions Karen has, respectively.
 
-The next n lines describe the recipes. Specifically, the i-th line among these contains two integers li and ri (1 ≤ li ≤ ri ≤ 200000), describing that the i-th recipe suggests that the coffee be brewed between li and ri degrees, inclusive.
+The next n lines describe the recipes. Specifically, the i-th line among these contains two integers li and ri (1 ≤ l_i ≤ r_i ≤ 200000), describing that the i-th recipe suggests that the coffee be brewed between li and ri degrees, inclusive.
 
 The next q lines describe the questions. Each of these lines contains a and b, (1 ≤ a ≤ b ≤ 200000), describing that she wants to know the number of admissible integer temperatures between a and b degrees, inclusive.
 
