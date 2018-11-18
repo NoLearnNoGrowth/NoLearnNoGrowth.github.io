@@ -4,6 +4,7 @@ title:      "GitHub+Jekyll 静态网页的个人博客"
 subtitle:   " \"建立博客了！\""
 date:       2018-11-17 01:00
 author:     "TanJX"
+comments: true
 header-img: "img/first-lovecode.jpg"
 tags:
     - 博客
