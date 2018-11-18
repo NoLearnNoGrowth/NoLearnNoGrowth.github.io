@@ -61,6 +61,15 @@ kramdown:
 # Disqus settings
 disqus_username: nolearnnogrowth-top
 
+# Coding Comments Settings
+coding_comments:
+  user: 
+  project: 
+  oauth:
+    client_id: 
+    client_secret: 
+
+
 # Netease settings
 netease_comment: false
 

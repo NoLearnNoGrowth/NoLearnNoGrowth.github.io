@@ -100,6 +100,14 @@ layout: default
                 <!-- disqus 评论框 end -->
                 {% endif %}
 
+                {% if site.coding_comments.user %}
+                <!-- coding_comments 评论框 start -->
+                <div class="comment">
+                    <div id="coding_comments_thread" class="coding_comments-thread"></div>
+                </div>
+                <!-- coding_comments 评论框 end -->
+                {% endif %}
+                
                 {% if site.netease_comment %}
                 <!-- 网易云跟帖 评论框 start -->
                 <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
@@ -169,7 +177,7 @@ layout: default
     var disqus_shortname = "{{site.disqus_username}}";
     var disqus_identifier = "{{page.id}}";
     var disqus_url = "{{site.url}}{{page.url}}";
-
+    
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -179,6 +187,7 @@ layout: default
 <!-- disqus 公共JS代码 end -->
 {% endif %}
 
+{% include coding_comments.html %}
 
 {% if site.anchorjs %}
 <!-- async load function -->
