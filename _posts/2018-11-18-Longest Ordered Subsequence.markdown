@@ -43,13 +43,15 @@ Output file must contain a single integer - the length of the longest ordered su
 </div>
 
 **题意**
-
+---
     最大递增子序列的长度
+---
 
 **思路**
-
+---
     简单DP
     dp[i]表示1-i最大递增子序列的长度
+---
 
 **代码**
 
