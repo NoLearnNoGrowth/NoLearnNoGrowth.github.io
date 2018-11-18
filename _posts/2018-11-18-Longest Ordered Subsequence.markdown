@@ -15,7 +15,7 @@ tags:
 
 **Time limit** ```2000``` ms     **Memory limit** ```65536``` kB
 
-A numeric sequence of ai is ordered if $$a_1$$ < $$a_2$$ < ... < $$a_N$$. Let the subsequence of the given numeric sequence ( $$a_1$$, $$a_2$$, ...,$$a_N$$) be any sequence ( $$a_i_1$$, $$a_i_2$$, ..., $$a_i_k$$), where 1 <= $$i_1$$ < $$i_2$$ < ... < $$i_K$$ <= N. For example, sequence (1, 7, 3, 5, 9, 4, 8) has ordered subsequences, e. g., (1, 7), (3, 4, 8) and many others. All longest ordered subsequences are of length 4, e. g., (1, 3, 5, 8). 
+A numeric sequence of ai is ordered if $$a_1$$ < $$a_2$$ < ... < $$a_N$$. Let the subsequence of the given numeric sequence ( $$a_1$$, $$a_2$$, ...,$$a_N$$) be any sequence ( $$a_i1$$, $$a_i2$$, ..., $$a_ik$$), where 1 <= $$i_1$$ < $$i_2$$ < ... < $$i_k$$ <= N. For example, sequence (1, 7, 3, 5, 9, 4, 8) has ordered subsequences, e. g., (1, 7), (3, 4, 8) and many others. All longest ordered subsequences are of length 4, e. g., (1, 3, 5, 8). 
 
 Your program, when given the numeric sequence, must find the length of its longest ordered subsequence.
 
