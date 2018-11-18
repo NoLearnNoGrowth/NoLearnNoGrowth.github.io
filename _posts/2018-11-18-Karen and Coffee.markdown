@@ -40,7 +40,7 @@ For each question, output a single integer on a line by itself, the number of ad
 
 The first line of input contains three integers, n, k (1 ≤ k ≤ n ≤ 200000), and q (1 ≤ q ≤ 200000), the number of recipes, the minimum number of recipes a certain temperature must be recommended by to be admissible, and the number of questions Karen has, respectively.
 
-The next n lines describe the recipes. Specifically, the i-th line among these contains two integers $$l~i~$$ and $$r~i~$$ (1 ≤ $$l~i~$$ ≤ $$r~i~$$ ≤ 200000), describing that the i-th recipe suggests that the coffee be brewed between $$l~i~$$ and $$r~i~$$ degrees, inclusive.
+The next n lines describe the recipes. Specifically, the i-th line among these contains two integers l\_i and r\_i (1 ≤ l\_i ≤ r\_i ≤ 200000), describing that the i-th recipe suggests that the coffee be brewed between l\_i and r\_i degrees, inclusive.
 
 The next q lines describe the questions. Each of these lines contains a and b, (1 ≤ a ≤ b ≤ 200000), describing that she wants to know the number of admissible integer temperatures between a and b degrees, inclusive.
 
