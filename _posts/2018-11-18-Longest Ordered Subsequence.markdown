@@ -13,6 +13,8 @@ tags:
 
 ## Longest Ordered Subsequence
 
+*Time limit ```2000``` ms     Memory limit ```65536``` kB*
+
 A numeric sequence of ai is ordered if a1 < a2 < ... < aN. Let the subsequence of the given numeric sequence ( a1, a2, ..., aN) be any sequence ( ai1, ai2, ..., aiK), where 1 <= i1 < i2 < ... < iK <= N. For example, sequence (1, 7, 3, 5, 9, 4, 8) has ordered subsequences, e. g., (1, 7), (3, 4, 8) and many others. All longest ordered subsequences are of length 4, e. g., (1, 3, 5, 8). 
 
 Your program, when given the numeric sequence, must find the length of its longest ordered subsequence.
