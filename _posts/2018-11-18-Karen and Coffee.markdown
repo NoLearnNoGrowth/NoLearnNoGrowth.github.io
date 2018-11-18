@@ -13,6 +13,7 @@ tags:
 ##Karen and Coffee 
 
 [原题链接](https://codeforces.com/problemset/problem/816/B)
+
 **Time limit** ```2500``` ms     **Memory limit** ```524288``` kB
 
 To stay woke and attentive during classes, Karen needs some coffee!
