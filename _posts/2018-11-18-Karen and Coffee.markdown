@@ -21,7 +21,7 @@ To stay woke and attentive during classes, Karen needs some coffee!
 
 Karen, a coffee aficionado, wants to know the optimal temperature for brewing the perfect cup of coffee. Indeed, she has spent some time reading several recipe books, including the universally acclaimed "The Art of the Covfefe".
 
-She knows n coffee recipes. The i-th recipe suggests that coffee should be brewed between li and ri degrees, inclusive, to achieve the optimal taste.
+She knows n coffee recipes. The i-th recipe suggests that coffee should be brewed between $$l_i$$ and $$r_i$$ degrees, inclusive, to achieve the optimal taste.
 
 Karen thinks that a temperature is admissible if at least k recipes recommend it.
 
@@ -30,7 +30,7 @@ Karen has a rather fickle mind, and so she asks q questions. In each question, g
 Input
 The first line of input contains three integers, n, k (1 ≤ k ≤ n ≤ 200000), and q (1 ≤ q ≤ 200000), the number of recipes, the minimum number of recipes a certain temperature must be recommended by to be admissible, and the number of questions Karen has, respectively.
 
-The next n lines describe the recipes. Specifically, the i-th line among these contains two integers li and ri (1 ≤ l_i ≤ r_i ≤ 200000), describing that the i-th recipe suggests that the coffee be brewed between li and ri degrees, inclusive.
+The next n lines describe the recipes. Specifically, the i-th line among these contains two integers li and ri (1 ≤ $$l_i$$ ≤ $$r_i$$ ≤ 200000), describing that the i-th recipe suggests that the coffee be brewed between li and ri degrees, inclusive.
 
 The next q lines describe the questions. Each of these lines contains a and b, (1 ≤ a ≤ b ≤ 200000), describing that she wants to know the number of admissible integer temperatures between a and b degrees, inclusive.
 
