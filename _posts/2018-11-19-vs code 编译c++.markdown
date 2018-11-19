@@ -69,6 +69,7 @@ gcc -v
 配置内容如下：
 
 ```tasks.json```
+
 ```
 {
     "version": "2.0.0",
@@ -90,6 +91,7 @@ gcc -v
 ```
 
 ```launch.json```
+
 ```
 {
     "version": "0.2.0",
@@ -112,6 +114,7 @@ gcc -v
 ```
 
 ```c_cpp_properties.json```
+
 ```
 {
     "configurations": [
