@@ -1,0 +1,176 @@
+---
+layout:     post
+title:      "vs code 编译c/c++"
+subtitle:   " \"配置环境\""
+date:       2018-11-19 20:00
+author:     "TanJX"
+comments: true
+header-img: "img/first-lovecode.jpg"
+tags:
+    - 程序设计
+---
+
+## vs code 配置c/c++环境
+
+虽然平时比赛要求用的是code  blocks,但是很尴尬的是我不喜欢code blocks的那个界面，平时编程感觉太白很伤眼睛。再加上最近一直在折腾个人博客，对于前端，虽然没基础，但是还是知道用vs code还不错。因此，我又开始了瞎折腾的精神。希望平时编程也能通过vs code编译c++,但是正常情况下cs code对c++编译是很不友好的。所以想要成功编译c++程序，要通过自己配置。但是我在网上搜到的教程很少有能一次解决我的问题的。所以参考了几篇博客后，总结了一下。
+
+### 参考博客<br>
+[Visual Studio Code （vscode）编译C++](https://www.cnblogs.com/lkpp/p/vscode-cpp.html)<br>
+[整理：Visual Studio Code (vscode) 配置C、C++环境/编写运行C、C++（Windows）](https://blog.csdn.net/bat67/article/details/76095813)
+
+### 下载Visual Studio Code
+
+[下载地址](https://code.visualstudio.com/Download)
+
+### 安装插件
+
+可以选择```ctrl+shift+x```在商店里搜索或者选择```ctrl+shift+p```打开命令框输入
+
+```
+ext install cpptools
+```
+
+![cpptools](/img/in_post/cpptools.png)
+
+### 安装MinGW-W64，配置环境
+
+据说MinGW已经不更新了?=.=所以安装MinGW-W64
+
+[Windows MinGW DOWNLOAD](https://sourceforge.net/projects/mingw-w64/)
+
+![DOWNLOAD](/img/in_post/MinGW-W64.png)
+
+安装过程请注意自己的电脑是32还是64位的，其他的默认就可以了。还要额外注意下自己的下载地址后面要用。
+
+![bin](/img/in_post/mingw-bin.png)
+
+然后打开**我的电脑**->**属性**->**高级系统设置**->**环境变量**
+
+![Path](/img/in_post/path.png)
+
+选择新建，添加刚刚记住的```E:\vs code\mingw\mingw64\bin```确定后退出，注意这个应该是你自己的安装地址
+
+检查一下自己是否安装配置完成
+打开命令提示符输入
+
+```
+gcc -v
+```
+
+![命令提示符](/img/in_post/命令提示符.png)
+
+
+### 配置vs code
+
+![样图](/img/in_post/vscode-example.png)
+
+找一个文件夹作为你的工作区,然后在这个工作区下建立一个新的文件夹，命名为```.vscode```,注意点是不能缺少的。然后在你建立的```.vscode```文件夹下建立三个```.json```文件，分别为```tasks.json```,```launch.json```,```c_cpp_properties.json```。
+
+配置内容如下：
+
+```tasks.json```
+```
+{
+    "version": "2.0.0",
+    "command": "g++",
+    "args": ["-g","-std=c++11","${file}","-o","${workspaceRoot}\\${fileBasename}.exe"],
+    "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+        }
+    }
+}
+```
+
+```launch.json```
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C++ Launch (GDB)",                
+            "type": "cppdbg",                         
+            "request": "launch",                        
+            "targetArchitecture": "x86",                
+            "program": "${workspaceRoot}\\${fileBasename}.exe",                 
+            "miDebuggerPath":"E:/vs code/mingw/mingw64/bin/gdb.exe", 
+            "args": [],     
+            "stopAtEntry": false,                  
+            "cwd": "${workspaceRoot}",                  
+            "externalConsole": true,                  
+            "preLaunchTask": "g++"　　                  
+            }
+    ]
+ }
+```
+
+```c_cpp_properties.json```
+```
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceRoot}",
+                "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++",
+                "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32",
+                "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward",
+                "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1",
+                "E:/vs code/mingw/mingw64/x86_64-w64-mingw32/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "__GNUC__=6",
+                "__cdecl=__attribute__((__cdecl__))"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceRoot}",
+                    "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++",
+                    "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32",
+                    "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward",
+                    "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                    "E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1",
+                    "E:/vs code/mingw/mingw64/x86_64-w64-mingw32/include"
+                ]
+            },
+            "limitSymbolsToIncludedHeaders": true,
+            "databaseFilename": "",
+            "compilerPath": "E:\\vs code\\mingw\\mingw64\\bin\\gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
+```
+
+其中尤为需要注意的就是那些安装位置，配置的时候请参考我的来找到你自己安装的位置。<br>
+例如：```E:/vs code/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++```<br>
+```E:/vs code/mingw```是我安装时自己选的文件夹，从```mingw64```开始均为安装时自己出现的文件，所以请不要直接复制粘贴，注意自己的安装位置。
+
+这样基本就配置完了，测试一下经典的Hello World
+
+```
+#include<iostream>
+using namespace std;
+int main()
+{
+    cout<<"Hello World!"<<endl;
+    return 0;
+}
+```
+
+直接F6运行，或者选择在```return 0```处加个断点再F5，都能成功测试是否配置完成。
+
+当然估计在配置过程中问题是少不了的。如果有我未提到的问题，你可以发给我邮件tanjinxiao25@gmail.com，我推荐你直接在GitHub的仓库里添加issue。因为我不能保证自己能够彻底的解决
