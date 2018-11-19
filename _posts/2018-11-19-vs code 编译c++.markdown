@@ -42,7 +42,7 @@ ext install cpptools
 
 安装过程请注意自己的电脑是32还是64位的，其他的默认就可以了。还要额外注意下自己的下载地址后面要用。
 
-![bin](/img/in_post/mingw-bin.png)
+![bin](/img/in_post/mingwbin.png)
 
 然后打开**我的电脑**->**属性**->**高级系统设置**->**环境变量**
 
