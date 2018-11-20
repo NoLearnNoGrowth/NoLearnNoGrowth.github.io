@@ -68,7 +68,7 @@ gcc -v
 
 配置内容如下：
 
-```tasks.json```
+**tasks.json**
 
 ```
 {
@@ -90,7 +90,7 @@ gcc -v
 }
 ```
 
-```launch.json```
+**launch.json**
 
 ```
 {
@@ -113,7 +113,7 @@ gcc -v
  }
 ```
 
-```c_cpp_properties.json```
+**c_cpp_properties.json**
 
 ```
 {
