@@ -59,7 +59,7 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: nolearnnogrowth-top
+#disqus_username: nolearnnogrowth-top
 
 # Coding Comments Settings
 coding_comments:
