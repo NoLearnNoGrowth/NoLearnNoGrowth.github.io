@@ -10,7 +10,7 @@ tags:
     
 ---
 
-##Karen and Coffee 
+## Karen and Coffee 
 
 [原题链接](https://codeforces.com/problemset/problem/816/B)
 
