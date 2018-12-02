@@ -9,7 +9,7 @@ header-img: "img/ROS-bg.jpg"
 tags:
     - ROS
     - 学习笔记
---
+---
 
 这个只是学习笔记，[参考网址](http://wiki.ros.org/cn/ROS/Tutorials/NavigatingTheFilesystem)在这里，我只是加了许多我自己的东西，一步步跟着学习，毕竟我现在也是第一次接触ros
 ## 0.0 预备工作
