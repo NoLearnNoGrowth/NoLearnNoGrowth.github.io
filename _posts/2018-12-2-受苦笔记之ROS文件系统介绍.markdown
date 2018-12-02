@@ -30,9 +30,6 @@ $ sudo apt-get install ros-<distro>-ros-tutorials
 将 <distro> 替换成你所安装的版本（比如Jade、Indigo、hydro、groovy、fuerte等）。
 
 
-![image.png](https://upload-images.jianshu.io/upload_images/14848329-010ae6dd4637bbe8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
 ## 0.1 文件系统工具
 
 程序代码是分布在众多ROS软件包当中，当使用命令行工具（比如ls和cd）来浏览时会非常繁琐，因此ROS提供了专门的命令工具来简化这些操作。
@@ -68,7 +65,6 @@ YOUR_INSTALL_PATH/share/roscpp
 
 这个groovy是版本，按版本不同不一样，但是教程好像基本上是通用的。
 
-![image.png](https://upload-images.jianshu.io/upload_images/14848329-0af6735fc9c679b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 0.0.2 使用 roscd
 
@@ -100,7 +96,6 @@ YOUR_INSTALL_PATH/share/roscpp
 
 你可以看到```YOUR_INSTALL_PATH/share/roscpp```和之前使用```rospack find```得到的路径名称是一样的。
 
-![image.png](https://upload-images.jianshu.io/upload_images/14848329-6d8eb8a37003f720.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 注意，就像ROS中的其它工具一样，[roscd](http://wiki.ros.org/roscd)只能切换到那些路径已经包含在[ROS_PACKAGE_PATH](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH)环境变量中的软件包，要查看[ROS_PACKAGE_PATH](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH)中包含的路径可以输入：
 
@@ -133,7 +128,6 @@ $ pwd
 YOUR_INSTALL_PATH/share/roscpp/cmake
 ```
 
-![image.png](https://upload-images.jianshu.io/upload_images/14848329-233b117c562e99c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 0.0.3 roscd log
 
@@ -167,7 +161,6 @@ $ rosls roscpp_tutorials
 cmake  package.xml  srv
  ```
 
-![image.png](https://upload-images.jianshu.io/upload_images/14848329-07fb8b42854f1f95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 0.0.5 Tab 自动完成输入
 
@@ -223,7 +216,6 @@ $ roscd turtle
 $ roscd turtlesim/
 ```
 
-![image.png](https://upload-images.jianshu.io/upload_images/14848329-bfb2307ab93a5e21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 总结
 
