@@ -27,7 +27,7 @@ $ sudo apt-get install ros-<distro>-ros-tutorials
 **distro**是自己的ros版本，我的是ubuntu16.04装的版本是kinetic
 
 
-将 **distro**` 替换成你所安装的版本（比如Jade、Indigo、hydro、groovy、fuerte等）。
+将 **distro** 替换成你所安装的版本（比如Jade、Indigo、hydro、groovy、fuerte等）。
 
 
 ## 0.1 文件系统工具
