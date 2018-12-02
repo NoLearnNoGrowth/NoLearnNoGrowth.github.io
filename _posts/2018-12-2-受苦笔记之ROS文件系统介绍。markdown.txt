@@ -1,0 +1,175 @@
+---
+layout:     post
+title:      "受苦笔记-ros-2.ROS文件系统介绍"
+subtitle:   " \"ROS 学习笔记\""
+date:       2018-11-28 23:00
+author:     "TanJX"
+comments: true
+header-img: "img/ROS-bg.jpg"
+tags:
+    - ROS
+    - 学习笔记
+--
+
+这个只是学习笔记，[参考网址](http://wiki.ros.org/cn/ROS/Tutorials/NavigatingTheFilesystem)在这里，我只是加了许多我自己的东西，一步步跟着学习，毕竟我现在也是第一次接触ros
+## 0.0 预备工作
+我们将会用到ros-tutorials程序包，请先安装：
+```
+$ sudo apt-get install ros-<distro>-ros-tutorials
+```
+<distro>是自己的ros版本，我的是ubuntu16.04装的版本是kinetic
+将 <distro> 替换成你所安装的版本（比如Jade、Indigo、hydro、groovy、fuerte等）。
+![image.png](https://upload-images.jianshu.io/upload_images/14848329-010ae6dd4637bbe8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+## 0.1 文件系统工具
+程序代码是分布在众多ROS软件包当中，当使用命令行工具（比如ls和cd）来浏览时会非常繁琐，因此ROS提供了专门的命令工具来简化这些操作。
+
+### 0.0.1 使用 rospack
+[rospack](http://wiki.ros.org/rospack)允许你获取软件包的有关信息。在本教程中，我们只涉及到```rospack```中```find```参数选项，该选项可以返回软件包的路径信息。
+
+用法：
+```
+# rospack find [包名称]
+```
+示例：
+```
+$ rospack find roscpp
+```
+应输出：
+```
+YOUR_INSTALL_PATH/share/roscpp
+```
+如果你是在Ubuntu Linux操作系统上通过apt来安装ROS，你应该会准确地看到：
+```
+/opt/ros/groovy/share/roscpp
+```
+这个groovy是版本，按版本不同不一样，但是教程好像基本上是通用的。
+![image.png](https://upload-images.jianshu.io/upload_images/14848329-0af6735fc9c679b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 0.0.2 使用 roscd
+```roscd```是[rosbash](http://wiki.ros.org/rosbash)命令集中的一部分，它允许你直接切换([cd](http://ss64.com/bash/cd.html))工作目录到某个软件包或者软件包集当中。
+
+用法：
+```
+# roscd [本地包名称[/子目录]]
+```
+示例：
+```
+$ roscd roscpp
+```
+为了验证我们已经切换到了roscpp软件包目录下，现在我们可以使用Unix命令[pwd](http://ss64.com/bash/pwd.html)来输出当前工作目录：
+
+```
+$ pwd
+```
+你应该会看到：
+
+```
+YOUR_INSTALL_PATH/share/roscpp
+```
+
+你可以看到```YOUR_INSTALL_PATH/share/roscpp```和之前使用```rospack find```得到的路径名称是一样的。
+
+![image.png](https://upload-images.jianshu.io/upload_images/14848329-6d8eb8a37003f720.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+注意，就像ROS中的其它工具一样，[roscd](http://wiki.ros.org/roscd)只能切换到那些路径已经包含在[ROS_PACKAGE_PATH](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH)环境变量中的软件包，要查看[ROS_PACKAGE_PATH](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH)中包含的路径可以输入：
+
+```
+$ echo $ROS_PACKAGE_PATH
+```
+你的[ROS_PACKAGE_PATH](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH)环境变量应该包含那些保存有ROS软件包的路径，并且每个路径之间用冒号分隔开来。一个典型的[ROS_PACKAGE_PATH](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH)环境变量如下：
+
+```
+/opt/ros/groovy/base/install/share:/opt/ros/groovy/base/install/stacks
+```
+跟其他路径环境变量类似，你可以在[ROS_PACKAGE_PATH](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH)中添加更多其它路径，每条路径使用冒号':'分隔。
+
+##### 子目录
+
+使用[roscd](http://wiki.ros.org/roscd)也可以切换到一个软件包或软件包集的子目录中。
+
+执行：
+
+```
+$ roscd roscpp/cmake
+$ pwd
+```
+应该会看到：
+```
+YOUR_INSTALL_PATH/share/roscpp/cmake
+```
+![image.png](https://upload-images.jianshu.io/upload_images/14848329-233b117c562e99c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 0.0.3 roscd log
+使用roscd log可以切换到ROS保存日记文件的目录下。需要注意的是，如果你没有执行过任何ROS程序，系统会报错说该目录不存在。
+
+如果你已经运行过ROS程序，那么可以尝试：
+```
+$ roscd log
+```
+
+### 0.0.4 使用 rosls
+[rosls](http://wiki.ros.org/rosbash#rosls)是[rosbash](http://wiki.ros.org/rosbash)命令集中的一部分，它允许你直接按软件包的名称而不是绝对路径执行[ls](http://ss64.com/bash/ls.html)命令（罗列目录）。
+
+用法：
+
+```
+# rosls [本地包名称[/子目录]]
+```
+示例：
+```
+$ rosls roscpp_tutorials
+```
+应输出：
+```
+cmake  package.xml  srv
+ ```
+![image.png](https://upload-images.jianshu.io/upload_images/14848329-07fb8b42854f1f95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 0.0.5 Tab 自动完成输入
+
+当要输入一个完整的软件包名称时会变得比较繁琐。在之前的例子中```roscpp tutorials```是个相当长的名称，幸运的是，一些ROS工具支持[TAB 自动完成输入](http://en.wikipedia.org/wiki/Command_line_completion)的功能。
+输入：
+```
+# roscd roscpp_tut<<< 现在请按TAB键 >>>
+```
+当按TAB键后，命令行中应该会自动补充剩余部分：
+```
+$ roscd roscpp_tutorials/
+```
+这应该有用，因为roscpp tutorials是当前唯一一个名称以roscpp tut作为开头的ROS软件包。
+
+现在尝试输入：
+```
+# roscd tur<<< 现在请按TAB键 >>>
+```
+按TAB键后，命令应该会尽可能地自动补充完整：
+```
+$ roscd turtle
+```
+但是，在这种情况下有多个软件包是以turtle开头，当再次按TAB键后应该会列出所有以turtle开头的ROS软件包：
+```
+turtle_actionlib/  turtlesim/         turtle_tf/
+```
+这时在命令行中你应该仍然只看到：
+```
+$ roscd turtle
+```
+现在在turtle后面输入s然后按TAB键：
+```
+# roscd turtles<<< 请按TAB键 >>>
+```
+因为只有一个软件包的名称以turtles开头，所以你应该会看到：
+```
+$ roscd turtlesim/
+```
+![image.png](https://upload-images.jianshu.io/upload_images/14848329-bfb2307ab93a5e21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## 总结
+ROS命令工具的的命名方式：
+1.rospack = ros + pack(age)
+2.roscd = ros + cd
+3.rosls = ros + ls
+到此你已经了解了ROS的文件系统结构，接下来我们开始创建一个工作空间
+
