@@ -1,0 +1,98 @@
+---
+layout:     post
+title:      "受苦笔记-ubuntu 18.04 nvidia显卡问题"
+subtitle:   " \"Ubuntu\""
+date:       2018-12-01
+author:     "TanJX"
+comments: true
+header-img: "img/ROS-bg.jpg"
+tags:
+    - 学习笔记
+---
+
+## ubuntu 对nvidia的不支持，令人抓狂
+
+这么说吧，几乎所有的版本ubuntu安装的时候都会遇到安装时黑屏或者卡在logo界面的问题
+
+所以总结一下这些由显卡引发的问题，并给出解决方法
+
+这篇主要是对我用的ubuntu 18.04的做出的，但是一般其他版本也是可以用的
+
+首先强调：安装Linux之前先关闭```Security Boot```
+
+### 1.安装卡在logo
+
+这时候只有按电源键重启，重启再次进入安装时不要点进去，而是按```e```进入```grub```界面，找到```quiet splash```填上```nomodeset```禁用nvidia即可进入ubuntu继续安装，但是这种方法只是一次性的，下次要进还要再改一次，所以看第二条
+
+### 2.永久不卡在启动界面
+
+方法一：
+
+在进入系统后打开终端
+
+```
+sudo nano/etc/default/grub
+```
+
+找到```GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"```
+
+修改为```GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nomodeset"```
+
+重启
+
+方法二：
+
+打开终端
+
+```
+sudo gedit /boot/grub/grub.cfg
+```
+
+搜索```quiet splash```里面一共有三处，都加上```acpi_osi=linux nomodeset```
+
+我是通过第二种方法进入的，但是貌似第一种也是完全ok的
+
+### 3.安装驱动
+
+打开终端输入
+
+```
+ubuntu-drivers devices
+```
+
+它会显示你的NVIDIA显卡型号和推荐的驱动程序，例如我的：
+
+```
+== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+modalias : pci:v000010DEd0000139Bsv00001043sd00001420bc03sc02i00
+vendor   : NVIDIA Corporation
+model    : GM107M [GeForce GTX 960M]
+driver   : nvidia-driver-390 - distro non-free recommended
+driver   : xserver-xorg-video-nouveau - distro free builtin
+```
+
+它推荐的是```nvidia-driver-390```
+
+紧接着我们输入
+
+```
+sudo ubuntu-drivers autoinstall
+```
+
+表示安装其推荐的驱动
+
+安完重启即可
+
+
+### 4.Ubuntu 18.04 安装完nvidia驱动后重启进入stop nvidia .....具体我也记不太清，反正是停止了NVIDIA的服务，然后卡死在死循环界面
+
+这个问题我在安装16.04的时候完全没遇见，可能是只有18.04才会遇见的吧？=.=
+
+在死循环界面按ESC进入grub，在里面输入你的用户名和密码，然后卸载NVIDIA
+
+```
+sudo apt-get remove --purge nvidia-*        #卸载NVIDIA驱动
+sudo reboot             #重启
+```
+
+这样就进去了，但是卸载了不就没了吗....死循环啊，后来才发现是因为之前为了进系统设置的```grub```文件使每次进入都自动禁止了NVIDIA所以我们在重新安装完驱动后，重启钱再次修改```grub```文件，把之前加上的```nomodeset	```那些全部删掉就又能进去ubuntu了
