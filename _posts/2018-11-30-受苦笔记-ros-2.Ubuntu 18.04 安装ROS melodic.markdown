@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "受苦笔记-ros-2.Ubuntu 18.04 安装ROS melodic"
+title:      "受苦笔记-ros-Ubuntu 18.04 安装ROS melodic"
 subtitle:   " \"ROS 学习笔记\""
 date:       2018-11-30
 author:     "TanJX"
