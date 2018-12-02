@@ -19,44 +19,55 @@ tags:
 没错，被折磨疯了的我选择换了系统，所以换了ros版本melodic
 
 ### 1.设置sources.list
+
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 ```
 
 ### 2.设置公钥
+
 ```
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 ```
 
 ### 3.更新
+
 ```
 sudo apt update
 ```
 
 ### 4.安装
+
 还是建议安装完整版，其他的直接看官网教程
+
 ```
 sudo apt install ros-melodic-desktop-full
 ```
+
 寻找可用包
+
 ```
 apt search ros-melodic
 ```
 
 ### 5.初始化rosdep
+
 ```
 sudo rosdep init
 rosdep update
 ```
 
 ### 6.环境设置
+
 为了不每次打开终端都要source一次，我们将其加到bash中
+
 ```
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
 ### 7.安装依赖
+
 ```
 sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
 ```
@@ -67,6 +78,7 @@ sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool
 >接下来是```sudo rosdep init```总是出错的地方
 
 正确的```rosdep update```输出
+
 ```
 reading in sources list data from /etc/ros/rosdep/sources.list.d
 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
@@ -85,20 +97,28 @@ Add distro "melodic"
 updated cache in /home/tjx/.ros/rosdep/sources.cache
 
 ```
+
+
+
 错误1：
+
 ```
 ERROR: default sources list file already exists:
 	/etc/ros/rosdep/sources.list.d/20-default.list
 Please delete if you wish to re-initialize
 ```
+
 解决方法：
+
 ```
 sudo rm /etc/ros/rosdep/sources.list.d/20-default.list
 sudo apt-get update
 sudo rosdep init
 rosdep update
 ```
+
 错误2：
+
 ```
 reading in sources list data from /etc/ros/rosdep/sources.list.d
 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
@@ -108,7 +128,9 @@ ERROR: unable to process source [https://raw.githubusercontent.com/ros/rosdistro
 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
 Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
 ```
+
 解决方法：
+
 ```
 sudo apt-get update && sudo apt-get install python-rosdep
 sudo rosdep init
