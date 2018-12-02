@@ -42,11 +42,11 @@ Output must contain a single integer - the minimal score.
 
 **题意**
 
-给n个数字，第一个和最后一个不能取，取第i个数字的代价为a[i-1]*a[i]*a[i+1],求最小代价
+给n个数字，第一个和最后一个不能取，取第i个数字的代价为a[i-1] * a[i] * a[i+1],求最小代价
 
 **思路**
 
-状态转移方程：dp[i][j] = min(dp[i][j],dp[i][k]+dp[k][j]+line[i]*line[k]*line[j])
+状态转移方程：dp[i][j] = min(dp[i][j],dp[i][k]+dp[k][j]+line[i] * line[k] * line[j])
 
 **代码**
 
