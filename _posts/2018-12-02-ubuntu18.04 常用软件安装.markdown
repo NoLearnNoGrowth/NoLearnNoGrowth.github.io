@@ -1,0 +1,174 @@
+---
+layout:     post
+title:      "ubuntu18.04 常用软件安装"
+subtitle:   " \"ubuntu\""
+date:       2018-12-02
+author:     "TanJX"
+comments: true
+header-img: "img/ROS-bg.jpg"
+tags:
+    - 学习笔记
+---
+
+## ubuntu 18.04 常用软件安装
+
+在被ubuntu16.04折磨的快疯了之后，我义无反顾的放弃了以前下载的那些软件(心痛.jpg)重装了系统换成了ubuntu18.04
+
+安装ubuntu18.04请参考我之前的那篇win10+ubuntu16.04的安装
+
+这次终于决定写一篇博客来记录自己的软件安装过程，以免以后再重装找不到方案
+
+首先安装前的第一个对自己的提醒，ubuntu18.04是不能直接进入软件管理那个界面的，这时候我们要输入
+
+```
+sudo update-manager -c -d
+```
+
+打开了软件更新器，这时候再点setting就能进入那个界面了！顺便将软件源更改为国内的aliyun这样平时比较快
+
+别忘了更改源后
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+接下来安装常用软件
+
+别问我为啥没qq,用这个系统就是在学习，不想要qq出现打扰自己
+
+## 1.chrome   
+
+ google的浏览器还是很好用的
+
+ 1. 添加下载源
+
+```
+sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/
+```
+
+2.添加公钥
+
+```
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+```
+
+3.更新
+
+```
+sudo apt-get update
+```
+
+4.安装chrome
+
+```
+sudo apt-get install google-chrome-stable
+```
+
+5.打开chrome
+
+```
+/usr/bin/google-chrome-stable
+```
+
+打开后添加到左侧收藏栏
+
+## 2.lantern  fq软件
+
+多去外网看看，才知道外面的世界很大
+
+[下载地址](https://github.com/getlantern/download)
+
+找到适合自己的版本，ubuntu各版本都是下载14.04版的那个
+
+然后双击自己的deb包，然后直接安装
+
+或者
+
+1.安装gdebi
+
+```
+sudo apt-get install gdebi-core
+```
+
+2.安装lantern
+
+```
+sudo gdebi lantern-installer-beta-64-bit.deb
+```
+
+启动是在终端输入lantern就可以了
+
+使用蓝灯是免费版每月限制500M，专业版不限量，如果你想升级专业版可以联系我，给你邀请码，各赠我们几个月的使用时间
+
+## 3.安装搜狗输入法
+
+系统自带的输入法，谁用谁知道
+英文系统的先在languages中安装简体中文
+
+3.1.下载搜狗输入法
+
+[下载地址](https://pinyin.sogou.com/linux/)
+
+3.2.安装
+
+在你下载的deb包的路径输入
+
+```
+sudo dpkg -i 你的deb包名称
+```
+
+不成功的自动修复
+
+```
+sudo apt-get install -f
+```
+
+再来一次安装
+
+这样就安装了fxitx,重启
+
+
+3配置
+
+重启后，在设置->区域和语言->管理已安装语言，将键盘输入法系统改为```fcitx```，然后系统搜索中搜索```fcitx```添加输入法，添加搜狗输入法
+
+## 4.安装vs code
+
+这是一个很强大的代码编辑软件，但是配置环境也很麻烦
+
+[下载地址](https://link.jianshu.com/?t=https%3A%2F%2Fcode.visualstudio.com%2FDownload)
+
+4.1.安装
+
+在你下载的deb包的路径输入
+
+```
+sudo dpkg -i 你的deb包名称
+```
+
+不成功的自动修复
+
+```
+sudo apt-get install -f
+```
+
+再来一次安装
+
+4.2.配置vscode
+
+下面再单独写一个博客来描述
+
+## 5.安装Git
+
+```
+sudo apt-get install git
+```
+
+## 6.安装gnome-tweak-tool桌面优化工具
+
+可以修改字体大小，主题之类的
+
+```
+sudo apt install gnome-tweak-tool
+```
