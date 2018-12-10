@@ -1,0 +1,100 @@
+---
+layout:     post
+title:      "HDU 2087 剪花布条"
+subtitle:   " \"kruskal+并查集\""
+date:       2018-12-10
+author:     "TanJX"
+comments: true
+header-img: "img/acm.jpg"
+tags:
+    - ACM
+---
+
+## 剪花布条
+
+一块花布条，里面有些图案，另有一块直接可用的小饰条，里面也有一些图案。对于给定的花布条和小饰条，计算一下能从花布条中尽可能剪出几块小饰条来呢？ 
+
+**Input**
+
+输入中含有一些数据，分别是成对出现的花布条和小饰条，其布条都是用可见ASCII字符表示的，可见的ASCII字符有多少个，布条的花纹也有多少种花样。花纹条和小饰条不会超过1000个字符长。如果遇见#字符，则不再进行工作。 
+
+**Output**
+
+输出能从花纹布中剪出的最多小饰条个数，如果一块都没有，那就老老实实输出0，每个结果之间应换行。 
+
+**Sample Input**
+
+>abcde a3
+
+aaaaaa  aa
+
+#
+
+**Sample Output**
+
+>0
+
+3
+
+**题意**
+---
+不重复字符串匹配
+
+**思路**
+---
+暴力可以过，但是还是敲一下KMP模板
+我觉得这个[KMP](https://blog.csdn.net/v_july_v/article/details/7041827)讲的很详细
+
+
+**代码**
+
+```
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+#include <math.h>
+#include <cstring>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    char a[1100],b[1100],next[1100];
+    while(cin>>a && a[0] != '#')
+    {
+        getchar();
+        cin>>b;
+        next[0] = -1;
+        int len = strlen(b),i = 0,j = -1;
+        while(i < len)
+        {
+            if(j == -1 || b[i] == b[j])
+                next[++i] = ++j;
+            else
+                j = next[j];
+        }
+        int ans = 0;
+        int lena = strlen(a),lenb = strlen(b);
+        i = 0, j = 0;
+        while(i <= lena && j <= lenb)
+        {
+            if(j == lenb)
+            {
+                ans ++;
+                j = 0;
+                continue;
+            }
+            if(j == -1 || a[i] == b[j])
+            {
+                i++;
+                j++;
+            }
+            else
+                j = next[j];
+        }
+        cout<<ans<<endl;
+    }
+    return 0;
+}
+```
