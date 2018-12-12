@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "HDU 2087 剪花布条"
-subtitle:   " \"kruskal+并查集\""
+subtitle:   " \"KMP\""
 date:       2018-12-10
 author:     "TanJX"
 comments: true
