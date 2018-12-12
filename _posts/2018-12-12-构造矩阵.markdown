@@ -1,0 +1,106 @@
+---
+layout:     post
+title:      "hihocoder 1856 构造矩阵(JAVA)"
+subtitle:   " \"JAVA\""
+date:       2018-12-12
+author:     "TanJX"
+comments: true
+header-img: "img/acm.jpg"
+tags:
+    - ACM
+---
+
+## 构造矩阵
+
+对于一个N × M的整数矩阵A，小Hi知道每一行的整数之和依次是P1, P2, ... PN，每一列的整数整数之和依次是Q1, Q2, ... QM。  
+
+你能构造出一个矩阵A，满足每个元素Aij都是非负的，并且满足上述行列之和吗？
+
+**Input**
+
+第一行包含两个整数N和M。  
+
+第二行包含N个整数，P1, P2, ... PN。  
+
+第三行包含M个整数，Q1, Q2, ... QM。  
+
+输入保证有解。  
+
+1 ≤ N, M ≤ 100  
+
+1 ≤ Pi, Qi ≤ 100000
+
+**Output**
+
+输入一个N × M的矩阵，满足题目中的要求。如果有多解，你可以输出任意一个。
+
+**Sample Input**
+
+>3 3<br>
+15 15 15<br>
+15 15 15
+
+**Sample Output**
+
+>8 1 6<br>
+3 5 7<br>
+4 9 2
+
+**题意**
+
+中文题....
+
+**题解**
+
+水题，随便怎么跑，纯粹是来练手java
+
+**代码**
+
+```
+
+import java.io.BufferedInputStream;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner cin = new Scanner(new BufferedInputStream(System.in));
+        int N = cin.nextInt();
+        int M = cin.nextInt();
+        int[][] Matrix = new int[N + 5][N + 5];
+        for (int i = 1; i <= N; i++)
+            Matrix[i][0] = cin.nextInt();
+        for (int i = 1; i <= M; i++)
+            Matrix[0][i] = cin.nextInt();
+        // for (int i = 1; i <= N; i++)
+        // System.out.print(Matrix[i][0] + " ");
+        // System.out.println();
+        // for (int i = 1; i <= M; i++)
+        // System.out.print(Matrix[0][i] + " ");
+        // System.out.println();
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= M; j++) {
+                if (Matrix[i][0] > Matrix[0][j]) {
+                    Matrix[i][0] -= Matrix[0][j];
+                    Matrix[i][j] = Matrix[0][j];
+                    Matrix[0][j] = 0;
+
+                } else {
+                    Matrix[0][j] -= Matrix[i][0];
+                    Matrix[i][j] = Matrix[i][0];
+                    Matrix[i][0] = 0;
+                }
+                if (Matrix[i][0] == 0)
+                    break;
+            }
+        }
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= M; j++) {
+                System.out.print(Matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        cin.close();
+    }
+}
+```

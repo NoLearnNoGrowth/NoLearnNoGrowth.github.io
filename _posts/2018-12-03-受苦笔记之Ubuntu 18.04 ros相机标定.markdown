@@ -1,0 +1,140 @@
+---
+layout:     post
+title:      "受苦笔记之Ubuntu 18.04 ros相机标定"
+subtitle:   " \"ROS 学习笔记\""
+date:       2018-12-03
+author:     "TanJX"
+comments: true
+header-img: "img/ROS-bg.jpg"
+tags:
+    - ROS
+    - 学习笔记
+---
+
+## Ubuntu 18.04 相机标定
+ 之前用ubuntu 16.04想做相机标定但是一直出错，所以换了系统后我又回来折腾了
+
+安装ROS就不说了
+
+主要是ROS下的usb_cam程序包，之前一直在报错的我，终于换了系统后成功了。。。。
+
+[usb_cam下载网址](https://github.com/ros-drivers/usb_cam)
+
+[棋盘标定板下载](http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration?action=AttachFile&do=view&target=check-108.pdf)
+
+都说可以在终端直接安装，但是我的不知道为什么死活找不到包，所以只能在GitHub上通过源码安装了
+
+1.下载源码
+```
+tanjx@tanjx-GL553VW:~/catkin_ws/src$ git clone https://github.com/ros-drivers/usb_cam
+```
+
+2.编译
+```
+tanjx@tanjx-GL553VW:~/catkin_ws/src$ cd ..
+tanjx@tanjx-GL553VW:~/catkin_ws$ catkin_make
+```
+
+3.运行launch文件
+```
+tanjx@tanjx-GL553VW:~$ roslaunch usb_cam usb_cam-test.launch
+```
+错误1：
+```
+RLException: [usb_cam-test.launch] is neither a launch file in package [usb_cam] nor is [usb_cam] a launch file name
+The traceback for the exception was written to the log file
+```
+解决方法：
+```
+tanjx@tanjx-GL553VW:~$ source ~/catkin_ws/devel/setup.bash
+```
+输入后再运行```launch```文件
+
+这个```launch```文件运行时会报错
+```
+... logging to /home/tanjx/.ros/log/9302bc00-f708-11e8-81e5-d0577b77f434/roslaunch-tanjx-GL553VW-8077.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://tanjx-GL553VW:33033/
+
+SUMMARY
+========
+
+PARAMETERS
+ * /image_view/autosize: True
+ * /rosdistro: melodic
+ * /rosversion: 1.14.3
+ * /usb_cam/camera_frame_id: usb_cam
+ * /usb_cam/image_height: 480
+ * /usb_cam/image_width: 640
+ * /usb_cam/io_method: mmap
+ * /usb_cam/pixel_format: yuyv
+ * /usb_cam/video_device: /dev/video1
+
+NODES
+  /
+    image_view (image_view/image_view)
+    usb_cam (usb_cam/usb_cam_node)
+
+ROS_MASTER_URI=http://localhost:11311
+
+process[usb_cam-1]: started with pid [8092]
+process[image_view-2]: started with pid [8093]
+[ INFO] [1543847705.122842479]: Using transport "raw"
+[ INFO] [1543847705.139703367]: using default calibration URL
+[ INFO] [1543847705.140399744]: camera calibration URL: file:///home/tanjx/.ros/camera_info/head_camera.yaml
+[ INFO] [1543847705.140477468]: Unable to open camera calibration file [/home/tanjx/.ros/camera_info/head_camera.yaml]
+[ WARN] [1543847705.140504075]: Camera calibration file /home/tanjx/.ros/camera_info/head_camera.yaml not found.
+[ INFO] [1543847705.140525394]: Starting 'head_camera' (/dev/video1) at 640x480 via mmap (yuyv) at 30 FPS
+
+(image_raw:8093): GLib-GObject-CRITICAL **: 22:35:05.148: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+
+(image_raw:8093): GLib-GObject-CRITICAL **: 22:35:05.208: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+[ WARN] [1543847705.838083656]: white_balance_temperature_auto: Input/output error
+VIDIOC_S_CTRL: failed: Input/output error
+
+[ WARN] [1543847705.848456329]: unknown control 'focus_auto'
+
+Attempt to unlock mutex that was not locked
+[image_view-2] process has died [pid 8093, exit code -6, cmd /opt/ros/melodic/lib/image_view/image_view image:=/usb_cam/image_raw __name:=image_view __log:=/home/tanjx/.ros/log/9302bc00-f708-11e8-81e5-d0577b77f434/image_view-2.log].
+log file: /home/tanjx/.ros/log/9302bc00-f708-11e8-81e5-d0577b77f434/image_view-2*.log
+
+```
+我当时得到这个报错整个人都是懵的，然后我也不会修改，于是我在国内查，查不到解决方法，翻墙在国外查也没解决。就这样折腾了三天，期间还换了一次系统（就是它让我放弃了ubuntu 16.04 重装为 ubuntu 18.04），重装了三次ros，期间问过师兄，师兄也没解决，他也忙，所以我自己继续折腾，然后突然闹心的又打开了一个终端，运行了标定程序。。。。。。他就这样打开了～打开了～！！！所以着重强调```这个报错不用管！```
+
+4.标定程序
+
+```
+rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.108 image:=/usb_cam/image_raw camera:=/usb_cam
+```
+
+8x6和0.108是官方给出的标定板的尺寸，请根据自己的修改比如我的是8x6和0.0216
+
+为了得到一个好的标定结果，应该使得标定板尽量出现在摄像头视野的各个位置里：
+ 如标定板出现在视野中的左边，右边，上边和下边，标定板既有倾斜的，也有水平的.所以多动一动～
+ 
+界面中的
+
+x：表示标定板在视野中的左右位置。
+
+y：表示标定板在视野中的上下位置。
+
+size：标定板在占视野的尺寸大小，也可以理解为标定板离摄像头的远近。
+
+skew：标定板在视野中的倾斜位置。
+
+执行后
+![标定界面](/img/in_post/camera01.png)
+
+不停地动直到右边的按钮亮起，点击CALIBRATE开始标定，过程大约1,2分钟
+
+![标定成功](/img/in_post/camera02.png)
+
+标定成功够右边三个按钮全亮，此时终端里会显示你的摄像机的各个参数
+
+然后点击COMMIT保存数据，终端会显示
+```
+'Wrote calibration data to', '/tmp/calibrationdata.tar.gz')
+```
