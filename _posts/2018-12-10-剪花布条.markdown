@@ -24,13 +24,13 @@ tags:
 
 **Sample Input**
 
->abcde a3
->aaaaaa  aa
+>abcde a3<br>
+>aaaaaa  aa<br>
 >#
 
 **Sample Output**
 
->0
+>0<br>
 >3
 
 **题意**
