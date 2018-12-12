@@ -25,16 +25,13 @@ tags:
 **Sample Input**
 
 >abcde a3
-
-aaaaaa  aa
-
-#
+>aaaaaa  aa
+>#
 
 **Sample Output**
 
 >0
-
-3
+>3
 
 **题意**
 ---
