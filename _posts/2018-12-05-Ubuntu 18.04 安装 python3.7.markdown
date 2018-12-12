@@ -1,0 +1,35 @@
+---
+layout:     post
+title:      "Ubuntu 18.04 安装 python3.7"
+subtitle:   " \"Ubuntu\""
+date:       2018-12-05
+author:     "TanJX"
+comments: true
+header-img: "img/ROS-bg.jpg"
+tags:
+    - Ubuntu
+    - Opencv
+---
+
+## Ubuntu 18.04 安装 python3.7
+
+### 首先下载python 3.7
+[下载地址](https://www.python.org/downloads/release/python-370/)<br>
+注意下载的是.tgz包
+### 在你下载的文件夹下解压
+```
+sudo tar -xzf Python-3.7.0.tgz -C /opt/
+```
+紧接着执行
+```
+sudo ./configure
+```
+按提示你的please run ...执行
+```
+sudo ./configure --enable-optimizations
+```
+最后
+```
+sudo make && make install
+```
+安装完成
