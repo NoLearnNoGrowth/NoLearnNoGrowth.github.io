@@ -68,12 +68,12 @@ ll dp[15][25];
 int a[15];
 ll n,m,t;
 
-ll dfs(int pos,int pre,bool lead,bool limit){
+ll dfs(int pos,int pre,bool lead,bool limit){       //pre上一位的数,lead前导0,limit数位上界变量
     if(pos == -1){
         return 1;
     }
-    if(!limit && !lead && dp[pos][pre] != -1){
-        return dp[pos][pre];
+    if(!limit && !lead && dp[pos][pre] != -1){      
+        return dp[pos][pre];        //记忆化
     }
     int up = limit ? a[pos] : 9;
     ll ans = 0;
