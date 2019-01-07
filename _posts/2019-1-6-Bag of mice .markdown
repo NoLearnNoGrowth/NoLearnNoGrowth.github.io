@@ -55,11 +55,12 @@ Output the probability of the princess winning. The answer is considered to be c
 
 dp[i][j]存袋子中还剩i只白鼠j只黑鼠时公主赢得概率
 
-显然dp[1][0] = 1
+显然没有黑鼠时dp[i][0] = 1,而没有白鼠dp[0][i] = 0
 
 公主一次抓到白鼠胜利的概率：i/(i+j)
-公主抓到黑鼠，恶龙抓到黑鼠，跑出了一只黑鼠的概率：j/(i+j)*(j-1)/(i+j-1)*(j-2)/(i+j-2)*dp[i][j-3]
-公主抓到黑鼠，恶龙抓到黑鼠，跑出了一只白鼠的概率：j/(i+j)*(j-1)/(i+j-1)*i/(i+j-2)*dp[i-1][j-2]
+（前提黑鼠数量>=2）公主黑鼠，恶龙黑鼠，跑出白鼠概率：j/(i+j)*(j-1)/(i+j-1)*i/(i+j-2)*dp[i-1][j-2]
+（前提黑鼠数量>=3）公主黑鼠，恶龙黑鼠，跑出黑鼠概率：j/(i+j)*(j-1)/(i+j-1)*(j-2)/(i+j-2)*dp[i][j-3]
+
 
 ```
 #include <iostream>
@@ -78,21 +79,30 @@ const int maxn = 1100;
 const int INF = 0x3f3f3f3f;
 const int MOD = 10007;
 double dp[maxn][maxn];
-
+int w,b;
+void init(){
+    me(dp,0);
+    for(int i = 1; i <= w; i++){
+        dp[i][0] = 1;
+    }
+    for(int i = 1; i <= b; i++){
+        dp[0][i] = 0;
+    }
+}
 int main()
 {
-    int w,b;
+    
     while(cin>>w>>b){
-        me(dp,0);
-        dp[1][0] = 1;
+        
+        init();
         for(int i = 1; i <= w; i++){
             for(int j = 1; j <= b; j++){
-                    dp[i][j] = (double)i/(i+j);
+                    dp[i][j] += (double)i/(i+j);
                 if(j >= 2){
-                    dp[i][j] = (double)i/(i+j) + ((double)j/(i+j)*(double)(j-1)/(i+j-1)*(double)i/(i+j-2)*dp[i-1][j-2]);
+                    dp[i][j] += ((double)j/(i+j)*(double)(j-1)/(i+j-1)*(double)i/(i+j-2)*dp[i-1][j-2]);
                 }
                 if(j >= 3){
-                    dp[i][j] = (double)i/(i+j) + ((double)j/(i+j)*(double)(j-1)/(i+j-1)*(double)i/(i+j-2)*dp[i-1][j-2]) + ((double)j/(i+j)*(double)(j-1)/(i+j-1)*(double)(j-2)/(i+j-2)*dp[i][j-3]); 
+                    dp[i][j] += ((double)j/(i+j)*(double)(j-1)/(i+j-1)*(double)(j-2)/(i+j-2)*dp[i][j-3]); 
                 }
             }
         }
