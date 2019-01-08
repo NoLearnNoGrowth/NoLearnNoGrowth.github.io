@@ -52,7 +52,7 @@ For each test case, output the maximal numbers of apples Wshxzt can eat at a lin
 
 **题解**
 
-想不懂。。。面相大佬题解编程。
+想不懂。。。面向大佬题解编程。
 
 dp[i][j][0] 表示从i节点往下走j步且```不回来```获得的最大权值
 
