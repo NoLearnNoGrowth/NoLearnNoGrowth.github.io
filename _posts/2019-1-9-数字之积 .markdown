@@ -1,0 +1,138 @@
+---
+layout:     post
+title:      "BZOJ 3679 数字之积"
+subtitle:   " \"DP\""
+date:       2019-1-9
+author:     "TanJX"
+comments: true
+header-img: "img/acm.jpg"
+tags:
+    - ACM
+    - DP
+    - 2019寒假集训
+---
+
+## 数字之积 
+
+一个数x各个数位上的数之积记为f(x) <不含前导零><br>
+求[L,R)中满足0<f(x)<=n的数的个数
+
+**Input**
+
+第一行一个数n
+第二行两个数L、R
+
+**Output**
+
+一个数，即满足条件的数的个数
+
+**Sample Input**
+
+>5<br>
+19 22
+
+**Sample Output**
+
+>1
+
+**Hint**
+
+100%     0<L<R<10^18 , n<=10^9
+
+**题意**
+
+中文题
+
+**题解**
+
+数位DP,因为乘积较大，用map离散一下。
+
+**代码**
+
+```
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+#include <cmath>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <map>
+
+using namespace std;
+#define me(x,y) memset(x,y,sizeof x);
+
+typedef long long ll;
+const int maxn = 6;
+const int INF = 0x3f3f3f3f;
+const int MOD = 100;
+ll n,l,r;
+map <ll,int> use;
+ll dp[20][6010];
+int a[20],cnt;
+
+ll dfs(int pos,ll product,bool lead,bool limit){
+    if(product > n){
+        return 0;
+    }
+    
+    if(use[product] == 0){
+        use[product] = cnt++;
+    }
+    if(pos == -1){
+        if(product > 0 && product <= n){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    if(!lead && !limit && dp[pos][use[product]] != -1){
+        return dp[pos][use[product]];
+    }
+    int up = limit ? a[pos] : 9;
+    ll ret = 0;
+    for(int i = 0; i <= up; i++){
+        if(i == 0){
+            if(lead == false){
+                ret += dfs(pos-1,product*i,false,limit && i == a[pos]);
+            }
+            else{
+                ret += dfs(pos-1,0,true,limit && i == a[pos]);
+            }
+        }
+        else{
+            if(lead == false){
+                ret += dfs(pos-1,product*i,false,limit && i == a[pos]);
+            }
+            else{
+                ret += dfs(pos-1,i,false,limit && i == a[pos]);
+            }
+        }
+    }
+    if(!limit && !lead){
+        dp[pos][use[product]] = ret;
+    }
+    return ret;
+}
+
+ll solve(ll x){
+    int pos = 0;
+    while(x){
+        a[pos++] = x % 10;
+        x /= 10;
+    }
+    return dfs(pos-1,0,true,true);
+}
+int main()
+{
+    cin>>n;
+    cin>>l>>r;
+    cnt = 1;
+    use.clear();
+    me(dp,-1);
+    cout<<solve(r-1) - solve(l-1)<<endl;
+    return 0;
+}
+ 
+```
