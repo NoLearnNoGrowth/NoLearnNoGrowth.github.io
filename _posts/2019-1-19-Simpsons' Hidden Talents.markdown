@@ -2,7 +2,7 @@
 layout:     post
 title:      "HDU 2594  Simpsons' Hidden Talents"
 subtitle:   " \"KMP\""
-date:       2019-1-9
+date:       2019-1-19
 author:     "TanJX"
 comments: true
 header-img: "img/acm.jpg"
