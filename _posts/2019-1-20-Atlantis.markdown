@@ -139,7 +139,7 @@ int main()
         me(col,0);
         for(int i = 0; i < m; i++){ //按顺序扫描
             int l = lower_bound(Hash,Hash+d,node[i].l)-Hash;    //l,r均为离散化后的数组下标
-            int r = lower_bound(Hash,Hash+d,node[i].r)-Hash-1;
+            int r = lower_bound(Hash,Hash+d,node[i].r)-Hash-1;  //减一是为了防止区间缺失
             update(1,l,r,0,d-1,node[i].fg);
             sum += len[1]*(node[i+1].x - node[i].x);    //每次扫描的面积相加
         }
