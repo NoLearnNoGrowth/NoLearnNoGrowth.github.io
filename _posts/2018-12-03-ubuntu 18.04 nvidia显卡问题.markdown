@@ -7,7 +7,7 @@ author:     "TanJX"
 comments: true
 header-img: "img/ROS-bg.jpg"
 tags:
-    -Ubuntu
+    - Ubuntu
     - 学习笔记
 ---
 
