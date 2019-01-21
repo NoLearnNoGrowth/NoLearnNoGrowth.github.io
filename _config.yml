@@ -59,7 +59,7 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: tanjx
+#disqus_username: tanjx
 
 # Coding Comments Settings
 coding_comments:
