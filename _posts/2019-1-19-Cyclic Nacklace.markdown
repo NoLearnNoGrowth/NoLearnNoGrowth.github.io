@@ -25,15 +25,18 @@ As Christmas is around the corner, Boys are busy in choosing christmas presents 
 Now CC has brought in some ordinary bracelet chains, he wants to buy minimum number of pearls to make CharmBracelets so that he can save more money. but when remaking the bracelet, he can only add color pearls to the left end and right end of the chain, that is to say, adding to the middle is forbidden.
 CC is satisfied with his ideas and ask you for help.
  
+
 **Input**
 
 The first line of the input is a single integer T ( 0 < T <= 100 ) which means the number of test cases.
 Each test case contains only one line describe the original ordinary chain to be remade. Each character in the string stands for one pearl and there are 26 kinds of pearls being described by 'a' ~'z' characters. The length of the string Len: ( 3 <= Len <= 100000 ).
  
+
 **Output**
 
 For each case, you are required to output the minimum count of pearls added to make a CharmBracelet.
  
+
 **Sample Input**
 
 >3<br>
