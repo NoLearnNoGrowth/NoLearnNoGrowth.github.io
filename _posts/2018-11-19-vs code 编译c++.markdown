@@ -112,6 +112,9 @@ gcc -v
     ]
  }
 ```
+//Update 2019-1-23
+
+因为vscode更新后，已经不需要下面这个文件了
 
 **c_cpp_properties.json**
 
