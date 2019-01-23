@@ -8,6 +8,7 @@ comments: true
 header-img: "img/acm.jpg"
 tags:
     - ACM
+    - KMP
     - 2019寒假集训
 ---
 
