@@ -1,0 +1,192 @@
+---
+layout:     post
+title:      "HDU 3065 病毒侵袭持续中 "
+subtitle:   " \"AC自动机\""
+date:       2019-1-24
+author:     "TanJX"
+comments: true
+header-img: "img/acm.jpg"
+tags:
+    - ACM
+    - AC自动机
+    - 2019寒假集训
+---
+
+
+## 病毒侵袭持续中 
+
+小t非常感谢大家帮忙解决了他的上一个问题。然而病毒侵袭持续中。在小t的不懈努力下，他发现了网路中的“万恶之源”。这是一个庞大的病毒网站，他有着好多好多的病毒，但是这个网站包含的病毒很奇怪，这些病毒的特征码很短，而且只包含“英文大写字符”。当然小t好想好想为民除害，但是小t从来不打没有准备的战争。知己知彼，百战不殆，小t首先要做的是知道这个病毒网站特征：包含多少不同的病毒，每种病毒出现了多少次。大家能再帮帮他吗？
+
+**Input**
+
+第一行，一个整数N（1<=N<=1000），表示病毒特征码的个数。 <br>
+接下来N行，每行表示一个病毒特征码，特征码字符串长度在1—50之间，并且只包含“英文大写字符”。任意两个病毒特征码，不会完全相同。 <br>
+在这之后一行，表示“万恶之源”网站源码，源码字符串长度在2000000之内。字符串中字符都是ASCII码可见字符（不包括回车）。 <br>
+
+**Output**
+
+按以下格式每行一个，输出每个病毒出现次数。未出现的病毒不需要输出。 <br>
+病毒特征码: 出现次数 <br>
+冒号后有一个空格，按病毒特征码的输入顺序进行输出。 <br>
+
+**Sample Input**
+
+>3<br>
+AA<br>
+BB<br>
+CC<br>
+ooxxCC%dAAAoen....END<br>
+
+**Sample Output**
+
+>AA: 2<br>
+CC: 1<br>
+
+**Hint**
+
+Hit：
+
+题目描述中没有被提及的所有情况都应该进行考虑。比如两个病毒特征码可能有相互包含或者有重叠的特征码段。<br>
+计数策略也可一定程度上从Sample中推测。
+
+**题意**
+
+中文题
+
+**题解**
+
+AC自动机。明明是模板，我也是敲的没毛病啊，交了就T,绝望的到处找bug,后来又对着网上的代码找bug，一直T...交了一发网上的别人的代码156ms。？？？凭啥？没啥大区别的代码时间差了这么大？？？mmp要不是最后发现是自己maxn定义的少了一个0，我绝对会被逼疯在这里。我就想说为啥明明是空间不够，就算不是RE也应该是WA吧，给我个TLE，让我往死里找自己的复杂度是什么情况。
+
+**代码**
+
+```
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+#include <cmath>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <map>
+#include <queue>
+
+using namespace std;
+#define me(x,y) memset(x,y,sizeof x)
+#define lson rt<<1
+#define rson rt<<1|1
+#define max(a,b) a>b?a:b
+#define min(a,b) a<b?a:b
+typedef long long ll;
+const int maxn = 2000100;
+const int INF = 0x3f3f3f3f;
+const int MOD = 998244353;
+
+int n;
+
+char str[maxn];
+int vis[1010];
+
+struct Trie{
+    Trie *fail;
+    Trie *Next[26];
+    int id;
+    Trie(){
+        me(Next,NULL);
+        id = 0;
+        fail = NULL;
+    }
+} *root;
+
+void build_trie_tree(char s[],int k){
+    int len = strlen(s);
+    Trie *temp = root;
+    for(int i = 0; i < len; i++){
+        int id = s[i]-'A';
+        if(temp->Next[id] ==NULL){
+            temp->Next[id] = new Trie();
+        }
+        temp = temp->Next[id];
+    }
+    temp->id = k;
+}
+
+void build_ac_automation(){
+    queue<Trie*> Q;
+    Q.push(root);
+    root->fail = NULL;
+    while(!Q.empty()){
+        Trie *temp = Q.front();
+        Q.pop();
+        Trie *p;
+        for(int i = 0; i < 26; i++){
+            if(temp->Next[i] != NULL){
+                if(temp == root){
+                    temp->Next[i]->fail = root;
+                }
+                else{
+                    p = temp->fail;
+                    while(p != NULL){
+                        if(p->Next[i] != NULL){
+                            temp->Next[i]->fail = p->Next[i];
+                            break;
+                        }
+                        p = p->fail;
+                    }
+                    if(p == NULL){
+                        temp->Next[i]->fail = root;
+                    }
+                }
+                Q.push(temp->Next[i]);
+            }
+        }
+    }
+}
+
+void query(){
+    int len = strlen(str);
+    Trie *temp = root;
+    Trie *p = NULL;
+    for(int i = 0; i < len; i++){
+        if(str[i] >= 'A' && str[i] <= 'Z'){
+            int id = str[i]-'A';
+            while(temp->Next[id] == NULL && temp != root){
+                temp = temp->fail;
+            }
+            temp = temp->Next[id];
+            if(temp == NULL){
+                temp = root;
+            }
+            p = temp;
+            while(p != root && p->id > 0){
+                vis[p->id] ++;
+                p = p->fail;
+            }
+        }
+        else{
+            temp = root;
+        }
+    }
+}
+int main()
+{
+    while(cin>>n){
+        me(vis,0);
+        char s[1010][55];
+        root = new Trie();
+        for(int i = 1; i <= n; i++){
+            scanf("%s",s[i]);
+            build_trie_tree(s[i],i);
+        }
+        build_ac_automation();
+        scanf("%s",str);
+        query();
+        for(int i = 1; i <= n; i++){
+            if(vis[i]){
+                printf("%s: %d\n",s[i],vis[i]);
+            }
+        }
+    }
+    
+    return 0;
+}
+```
